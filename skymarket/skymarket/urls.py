@@ -20,7 +20,6 @@ schema_view = get_schema_view(
 )
 
 # TODO здесь необходимо подключить нужные нам urls к проекту
-
 urlpatterns = [
     path("api/admin/", admin.site.urls),
     path("api/redoc-tasks/", include("redoc.urls")),
