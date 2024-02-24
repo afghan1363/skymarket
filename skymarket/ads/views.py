@@ -1,4 +1,6 @@
 from rest_framework import pagination, viewsets
+from rest_framework.response import Response
+
 from ads.models import Ad, Comment
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView, DestroyAPIView
 from ads.serializers import AdSerializer, AdDetailSerializer, CommentSerializer
@@ -60,12 +62,14 @@ class CommentViewSet(viewsets.ModelViewSet):
         new_comment.ad = ad
         new_comment.save()
 
-    def get_permissions(self):
-        pass
+    # def get_permissions(self):
+    #     pass
 
-    def get_queryset(self):
-        ad = self.kwargs.get('id_pk')
-        return Ad.objects.filter(pk=ad).comments
+    def list(self, request, *args, **kwargs):
+        ad_pk = self.kwargs.get('ad_pk')
+        queryset = self.queryset.filter(ad_id=ad_pk)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 
