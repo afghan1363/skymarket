@@ -28,8 +28,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class AdSerializer(serializers.ModelSerializer):
-    author = serializers.IntegerField(read_only=True)
-    image = serializers.ImageField(allow_null=True)
+    image = serializers.ImageField(allow_null=True, default=None)
 
     class Meta:
         model = Ad
@@ -37,7 +36,7 @@ class AdSerializer(serializers.ModelSerializer):
 
 
 class AdDetailSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(allow_null=True)
+    image = serializers.ImageField(allow_null=True, default=None)
     title = serializers.CharField(max_length=250),
     price = serializers.IntegerField(),
     phone = serializers.CharField(source='author.phone'),

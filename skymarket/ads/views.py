@@ -17,16 +17,17 @@ class AdViewSet(viewsets.ModelViewSet):
     # filter_backends =
     # filterset_class =
 
+    def perform_create(self, serializer):
+        new_ad = serializer.save()
+        new_ad.author = self.request.user
+        print(new_ad.author)
+        new_ad.save()
+
     def get_serializer_class(self):
         if self.action in ['retrieve']:
             return AdDetailSerializer
         else:
             return AdSerializer
-
-    def perform_create(self, serializer):
-        ad = serializer.save()
-        ad.author = self.request.user
-        ad.save()
 
     # def get_permissions(self):
     #     if self.action == 'retrieve':
