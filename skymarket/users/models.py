@@ -25,6 +25,13 @@ class User(AbstractBaseUser):
     image = models.ImageField(verbose_name=_('Avatar'), null=True)
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователь'
+
     @property
     def is_admin(self):
         return self.role == UserRoles.ADMIN

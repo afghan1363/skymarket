@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 def redoc(request):
-    return render(request, 'redoc.html')
+    return render(request, 'Redoc.html')
 
 
 def redoc_json(request):

@@ -1,18 +1,50 @@
 from rest_framework import serializers
+from ads.models import Comment, Ad
 
 
-# TODO Сериалайзеры. Предлагаем Вам такую структуру, однако вы вправе использовать свою
+# class CommentCreateSerializer(serializers.ModelSerializer):
+#     created_at = serializers.DateTimeField(read_only=True)
+#
+#     class Meta:
+#         model = Comment
+#         fields = ('author', 'ad', 'text', 'created_at')
+#
+#
+# class CommentUpdateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Comment
+#         fields = ('text',)
+
 
 class CommentSerializer(serializers.ModelSerializer):
-    # TODO сериалайзер для модели
-    pass
+    author_first_name = serializers.CharField(source="author.first_name", read_only=True)
+    author_last_name = serializers.CharField(source="author.last_name", read_only=True)
+    author_image = serializers.CharField(source="author.image", read_only=True)
+    created_at = serializers.DateTimeField(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
 
 
 class AdSerializer(serializers.ModelSerializer):
-    # TODO сериалайзер для модели
-    pass
+    author = serializers.IntegerField(read_only=True)
+    image = serializers.ImageField(allow_null=True)
+
+    class Meta:
+        model = Ad
+        fields = ('author', 'title', 'price', 'description', 'image')
 
 
 class AdDetailSerializer(serializers.ModelSerializer):
-    # TODO сериалайзер для модели
-    pass
+    image = serializers.ImageField(allow_null=True)
+    title = serializers.CharField(max_length=250),
+    price = serializers.IntegerField(),
+    phone = serializers.CharField(source='author.phone'),
+    description = serializers.CharField(),
+    author_first_name = serializers.CharField(source='author.first_name')
+    author_last_name = serializers.CharField(source='author.last_name')
+
+    class Meta:
+        model = Ad
+        field = '__all__'
