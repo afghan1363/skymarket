@@ -20,4 +20,11 @@ class CurrentUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'phone', 'password',)
+        fields = ('id', 'first_name', 'last_name', 'phone', 'email', 'image', 'password')
+
+        # "first_name": "string",
+        # "last_name": "string",
+        # "phone": "string",
+        # "id": 0,
+        # "email": "user@example.com",
+        # "image":

@@ -1,6 +1,4 @@
 from rest_framework import pagination, viewsets
-from rest_framework.response import Response
-
 from ads.models import Ad, Comment
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView, DestroyAPIView
 from ads.serializers import AdSerializer, AdDetailSerializer, CommentSerializer
@@ -26,7 +24,7 @@ class AdViewSet(viewsets.ModelViewSet):
         new_ad.save()
 
     def get_serializer_class(self):
-        if self.action in ['retrieve']:
+        if self.action == 'retrieve':
             return AdDetailSerializer
         else:
             return AdSerializer
@@ -69,7 +67,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         ad_pk = self.kwargs.get('ad_pk')
         queryset = self.queryset.filter(ad_id=ad_pk)
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return self.get_paginated_response(self.paginate_queryset(serializer.data))
 
 
 

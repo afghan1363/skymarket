@@ -16,6 +16,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', "role"]
+    EMAIL_FIELD = 'email'
 
     email = models.EmailField(unique=True, verbose_name=_('Email'))
     first_name = models.CharField(max_length=100, verbose_name=_('First name'))

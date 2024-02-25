@@ -24,10 +24,9 @@ urlpatterns = [
     path("api/admin/", admin.site.urls),
     path("api/redoc-tasks/", include("redoc.urls")),
 
-    path("api/", include(arg='users.urls', namespace='users')),
+    path("api/api/", include(arg='users.urls', namespace='users')),
     path('api/', include(arg='ads.urls', namespace='ads')),
 
-    path('api/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
