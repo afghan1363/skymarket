@@ -21,12 +21,13 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    # админка и документация от фронтенда
     path("api/admin/", admin.site.urls),
     path("api/redoc-tasks/", include("redoc.urls")),
-
+    # модели объявлений, отзывов, пользователей
     path("api/api/", include(arg='users.urls', namespace='users')),
     path('api/', include(arg='ads.urls', namespace='ads')),
-
+    # документация
     path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
