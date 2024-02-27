@@ -1,9 +1,13 @@
-FROM python:3
+FROM python:3.10
 
-WORKDIR /skymarket/
+WORKDIR /skymarket
 
 COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ./skymarket/ .
+ENV PYTHONUNBUFFERED=1
+
+COPY ./skymarket/. .
+
+COPY .env .

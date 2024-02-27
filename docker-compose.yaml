@@ -7,8 +7,8 @@ services:
       - .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-    expose:
-      - '5432'
+    ports:
+      - '5443:5432'
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -21,21 +21,12 @@ services:
     command: >
       sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     ports:
-      - '8001:8000'
+      - '8000:8000'
     env_file:
       - .env
-    volumes:
-      - .:/skymarket
     depends_on:
       db:
         condition: service_healthy
-  frontend:
-    build: .
-    volumes:
-      - frontend:/app/build
-    depends_on:
-      - db
 
 volumes:
   pg_data:
-  frontend:
