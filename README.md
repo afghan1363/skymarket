@@ -21,13 +21,14 @@
     python3 manage.py makemigrations
 - ### Применить миграции
     python3 manage.py migrate
+### Для запуска в DOCKER применить команду
+    docker compose build или docker-compose build
+#### Миграции выполнятся автоматически.
 - ### Создание пользователей доступно коммандами
-    #### python3 manage.py createsuperuser  - для создания суперпользователя, админа
-    #### python3 manage.py create_simple_user  - для создания обычного пользователя
+     python3 manage.py createsuperuser  - для создания суперпользователя, админа
+  
+     python3 manage.py create_simple_user  - для создания обычного пользователя
 - ### Пользователя можно создать и с использованием реализованного функционала описанного в документации
     #### http://127.0.0.1:8000/api/swagger/
     #### http://127.0.0.1:8000/api/redoc/
     #### http://127.0.0.1:8000/api/redoc-tasks/
-### Для запуска в DOCKER применить команду
-    #### docker compose build или docker-compose build
-### Миграции выполнятся автоматически.
