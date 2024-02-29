@@ -7,7 +7,7 @@ User = get_user_model()
 
 class UserRegistrationSerializer(BaseUserRegistrationSerializer):
     """
-    Переопределения Djoser-сериалайзера для регистрация пользователя
+    Переопределения Djoser-сериалайзера для регистрации пользователя
     """
     class Meta(BaseUserRegistrationSerializer.Meta):
         model = User
