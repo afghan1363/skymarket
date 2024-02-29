@@ -7,7 +7,6 @@ from ads.apps import SalesConfig
 #                        CommentDestroyAPIView)
 from ads import views
 
-# TODO настройка роутов для модели
 app_name = SalesConfig.name
 
 ads_router = SimpleRouter()
@@ -20,10 +19,6 @@ urlpatterns = [
     path('api/', include(ads_router.urls)),
     path('api/ads/<int:ad_pk>/', include(comments_router.urls), name='comments'),
 ]
-
-
-
-
 
 # urlpatterns = [
 #     path('api/ads/', views.AdCreateAPIView.as_view(), name='create_ad'),
